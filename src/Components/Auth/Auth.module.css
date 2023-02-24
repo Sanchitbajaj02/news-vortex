@@ -1,0 +1,22 @@
+.bgViolet {
+  background-color: #6a5bc3;
+}
+
+.textViolet {
+  color: #6a5bc3;
+}
+
+.authcardimage {
+  width: 100%;
+  height: auto;
+  margin: auto;
+  margin-bottom: 10px;
+  object-fit: contain;
+  border-radius: 20px;
+}
+
+.linkHighlight {
+  font-weight: 600;
+  color: #6a5bc3;
+  text-decoration: none;
+}
