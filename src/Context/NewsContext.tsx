@@ -1,26 +1,6 @@
-import {
-  createContext,
-  ReactNode,
-  useContext,
-  useState,
-  Dispatch,
-  SetStateAction,
-} from "react";
+import { createContext, ReactNode, useContext, useState } from "react";
 
-// state type
-export type StoreType = {
-  user: {
-    userName: string;
-    emailID: string;
-    uid: string;
-  };
-};
-
-// State interface
-export interface NewsContextInterface {
-  store: StoreType;
-  setStore: Dispatch<SetStateAction<StoreType>>;
-}
+import { StoreType, NewsContextInterface } from "../@types/index.d";
 
 const defaultState: NewsContextInterface = {
   store: {
