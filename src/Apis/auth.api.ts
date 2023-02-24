@@ -8,7 +8,12 @@ import {
 } from "firebase/auth";
 import { auth } from "../firebase.config";
 
-const userRegister = async (userData) => {
+import { UserDataType } from "../@types/index.d";
+
+const userRegister = async (userData: UserDataType) => {
+  if (userData?.emailID === undefined || userData?.password === undefined) {
+    throw new Error("Username is required");
+  }
   return await createUserWithEmailAndPassword(
     auth,
     userData?.emailID,
@@ -16,7 +21,10 @@ const userRegister = async (userData) => {
   );
 };
 
-const userLogin = async (userData) => {
+const userLogin = async (userData: UserDataType) => {
+  if (userData?.emailID === undefined || userData?.password === undefined) {
+    throw new Error("Username is required");
+  }
   return await signInWithEmailAndPassword(
     auth,
     userData?.emailID,
@@ -24,11 +32,13 @@ const userLogin = async (userData) => {
   );
 };
 
-const userUpdate = async (userName) => {
+const userUpdate = async (userName: string) => {
   console.log(auth.currentUser);
-  return await updateProfile(auth.currentUser, {
-    displayName: userName,
-  });
+  if (auth.currentUser !== null && userName !== "") {
+    return await updateProfile(auth.currentUser, {
+      displayName: userName,
+    });
+  }
 };
 
 const googleSignin = () => {

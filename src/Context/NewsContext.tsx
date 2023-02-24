@@ -1,30 +1,50 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useState,
+  Dispatch,
+  SetStateAction,
+} from "react";
 
-interface StoreType {
+// state type
+export type StoreType = {
   user: {
-    userName: string | null;
-    emailID: string | null;
-    uid: string | null;
+    userName: string;
+    emailID: string;
+    uid: string;
   };
-}
-
-type StoreContextType = {
-  store: StoreType | null;
-  setStore: React.Dispatch<React.SetStateAction<StoreType | null>>;
 };
 
-export const NewsContext = createContext<StoreContextType | null>(null);
+// State interface
+export interface NewsContextInterface {
+  store: StoreType;
+  setStore: Dispatch<SetStateAction<StoreType>>;
+}
+
+const defaultState: NewsContextInterface = {
+  store: {
+    user: {
+      userName: "",
+      emailID: "",
+      uid: "",
+    },
+  },
+  setStore: (): void => {},
+};
+
+export const NewsContext = createContext(defaultState);
 
 const NewsContextProvider = ({ children }: { children: ReactNode }) => {
   const userName = localStorage.getItem("userName");
   const emailID = localStorage.getItem("emailID");
   const uid = localStorage.getItem("uid");
 
-  const [store, setStore] = useState<StoreType | null>({
+  const [store, setStore] = useState<StoreType>({
     user: {
-      userName: userName || null,
-      emailID: emailID || null,
-      uid: uid || null,
+      userName: userName || "",
+      emailID: emailID || "",
+      uid: uid || "",
     },
   });
 

@@ -13,7 +13,7 @@ const theme = createTheme({
       contrastText: "gray",
     },
     text: {
-      primary: "white",
+      primary: "#fff",
     },
   },
 });

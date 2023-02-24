@@ -2,37 +2,37 @@ import React from "react";
 import homeStyles from "./Home.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { Container, Paper, Box, Button, Typography, Grid } from "@mui/material";
-// import { useNewsContext } from "../../Context/NewsContext";
-// import { googleSignout } from "../../Apis/auth.api";
+import { useNewsContext } from "../../Context/NewsContext";
+import { googleSignout } from "../../Apis/auth.api";
 
 function Home() {
-  // const { store, setStore } = useNewsContext();
+  const { store, setStore } = useNewsContext();
   const navigate = useNavigate();
 
-  // const handleSignout = () => {
-  //   googleSignout()
-  //     .then(() => {
-  //       setStore((prev) => {
-  //         return {
-  //           ...prev,
-  //           user: {
-  //             userName: null,
-  //             emailID: null,
-  //             uid: null,
-  //           },
-  //         };
-  //       });
-  //       localStorage.removeItem("userName");
-  //       localStorage.removeItem("emailID");
-  //       localStorage.removeItem("uid");
+  const handleSignout = () => {
+    googleSignout()
+      .then(() => {
+        setStore((prev: any) => {
+          return {
+            ...prev,
+            user: {
+              userName: null,
+              emailID: null,
+              uid: null,
+            },
+          };
+        });
+        localStorage.removeItem("userName");
+        localStorage.removeItem("emailID");
+        localStorage.removeItem("uid");
 
-  //       navigate("/");
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       alert(err.message);
-  //     });
-  // };
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err);
+        alert(err.message);
+      });
+  };
 
   return (
     <Box bgcolor="primary.main">
@@ -80,7 +80,7 @@ function Home() {
             also save articles to read later.
           </Typography>
 
-          {/* <Box sx={{ marginTop: 3 }}>
+          <Box sx={{ marginTop: 3 }}>
             {store?.user?.emailID && store?.user?.uid ? (
               <Grid container spacing={3}>
                 <Grid item xs={12} sm={6}>
@@ -93,7 +93,7 @@ function Home() {
                         textTransform: "unset",
                         "&:hover": {
                           backgroundColor: "primary.main",
-                          color: "primary.white",
+                          color: "text.primary",
                         },
                       }}
                     >
@@ -105,13 +105,13 @@ function Home() {
                   <Button
                     variant="outlined"
                     size="large"
-                    // onClick={handleSignout}
+                    onClick={handleSignout}
                     sx={{
                       width: "100%",
                       textTransform: "unset",
                       "&:hover": {
                         backgroundColor: "primary.main",
-                        color: "primary.white",
+                        color: "text.primary",
                       },
                     }}
                   >
@@ -131,7 +131,7 @@ function Home() {
                         textTransform: "unset",
                         "&:hover": {
                           backgroundColor: "primary.main",
-                          color: "primary.white",
+                          color: "text.primary",
                         },
                       }}
                     >
@@ -149,7 +149,7 @@ function Home() {
                         textTransform: "unset",
                         "&:hover": {
                           backgroundColor: "primary.main",
-                          color: "primary.white",
+                          color: "text.primary",
                         },
                       }}
                     >
@@ -159,7 +159,7 @@ function Home() {
                 </Grid>
               </Grid>
             )}
-          </Box> */}
+          </Box>
         </Paper>
       </Container>
     </Box>

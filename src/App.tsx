@@ -7,18 +7,22 @@ import {
   Outlet,
 } from "react-router-dom";
 import { useNewsContext } from "./Context/NewsContext";
+import { auth } from "./firebase.config";
 
 // Components import
 const Home = lazy(() => import("./Components/Home/Home"));
+const Register = lazy(() => import("./Components/Auth/Register"));
+const Login = lazy(() => import("./Components/Auth/Login"));
+
 const PageNotFound = lazy(() => import("./PageNotFound"));
 
 function App(): JSX.Element {
   // const { store } = useNewsContext();
 
   useEffect(() => {
-    // auth.onAuthStateChanged((user) => {
-    //   console.log(user);
-    // });
+    auth.onAuthStateChanged((user) => {
+      console.log(user);
+    });
   }, []);
   return (
     <>
@@ -40,8 +44,22 @@ function App(): JSX.Element {
               </Suspense>
             }
           />
-          {/* <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} /> */}
+          <Route
+            path="/login"
+            element={
+              <Suspense fallback={<div>Loading...</div>}>
+                <Login />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <Suspense fallback={<div>Loading...</div>}>
+                <Register />
+              </Suspense>
+            }
+          />
 
           {/* {store && store?.user?.uid && (
             <>
