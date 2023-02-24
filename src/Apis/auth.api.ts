@@ -34,7 +34,7 @@ const userLogin = async (userData: UserDataType) => {
 
 const userUpdate = async (userName: string) => {
   console.log(auth.currentUser);
-  if (auth.currentUser !== null && userName !== "") {
+  if (auth.currentUser !== null) {
     return await updateProfile(auth.currentUser, {
       displayName: userName,
     });

@@ -82,7 +82,7 @@ function Navbar() {
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
               sx={{
-                color: "primary.white",
+                color: "text.primary",
               }}
             >
               <MenuIcon />
@@ -123,7 +123,7 @@ function Navbar() {
                   sx={{
                     my: 2,
                     display: "block",
-                    color: "primary.white",
+                    color: "text.primary",
                     textTransform: "capitalize",
                     fontSize: 16,
                     transition: "all 0.3s ease",
@@ -145,10 +145,10 @@ function Navbar() {
               <Button
                 sx={{
                   my: 2,
-                  color: "primary.white",
                   textTransform: "capitalize",
                   fontSize: 16,
                   transition: "all 0.3s ease",
+                  color: "text.primary",
                 }}
               >
                 {store?.user?.userName}
@@ -159,10 +159,9 @@ function Navbar() {
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 onClick={handleMenu}
-                color="inherit"
               >
                 <AccountCircle
-                  sx={{ color: "primary.white" }}
+                  sx={{ color: "text.primary" }}
                   fontSize="large"
                 />
               </IconButton>
@@ -182,8 +181,22 @@ function Navbar() {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>My Account</MenuItem>
-                <MenuItem onClick={handleSignout}>Logout</MenuItem>
+                <MenuItem
+                  onClick={handleClose}
+                  sx={{
+                    color: "text.secondary",
+                  }}
+                >
+                  My Account
+                </MenuItem>
+                <MenuItem
+                  onClick={handleSignout}
+                  sx={{
+                    color: "text.secondary",
+                  }}
+                >
+                  Logout
+                </MenuItem>
               </Menu>
             </Box>
           )}

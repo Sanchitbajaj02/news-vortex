@@ -9,15 +9,18 @@ import {
 import { useNewsContext } from "./Context/NewsContext";
 import { auth } from "./firebase.config";
 
+import Loader from "./Components/Loader/Loader";
+
 // Components import
 const Home = lazy(() => import("./Components/Home/Home"));
 const Register = lazy(() => import("./Components/Auth/Register"));
 const Login = lazy(() => import("./Components/Auth/Login"));
-
+const Navbar = lazy(() => import("./Components/Navbar/Navbar"));
+const NewsBoard = lazy(() => import("./Components/News/NewsBoard"));
 const PageNotFound = lazy(() => import("./PageNotFound"));
 
 function App(): JSX.Element {
-  // const { store } = useNewsContext();
+  const { store } = useNewsContext();
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -31,7 +34,7 @@ function App(): JSX.Element {
           <Route
             path="/"
             element={
-              <Suspense fallback={<div>Loading...</div>}>
+              <Suspense fallback={<Loader />}>
                 <Home />
               </Suspense>
             }
@@ -39,7 +42,7 @@ function App(): JSX.Element {
           <Route
             path="/not-found"
             element={
-              <Suspense fallback={<div>Loading...</div>}>
+              <Suspense fallback={<Loader />}>
                 <PageNotFound />
               </Suspense>
             }
@@ -47,7 +50,7 @@ function App(): JSX.Element {
           <Route
             path="/login"
             element={
-              <Suspense fallback={<div>Loading...</div>}>
+              <Suspense fallback={<Loader />}>
                 <Login />
               </Suspense>
             }
@@ -55,19 +58,21 @@ function App(): JSX.Element {
           <Route
             path="/register"
             element={
-              <Suspense fallback={<div>Loading...</div>}>
+              <Suspense fallback={<Loader />}>
                 <Register />
               </Suspense>
             }
           />
 
-          {/* {store && store?.user?.uid && (
+          {store && store?.user?.uid && (
             <>
               <Route
                 path="/blog"
                 element={
                   <>
-                    <Outlet />
+                    <Suspense fallback={<Loader />}>
+                      <Outlet />
+                    </Suspense>
                   </>
                 }
               >
@@ -82,7 +87,7 @@ function App(): JSX.Element {
                 />
               </Route>
             </>
-          )} */}
+          )}
 
           <Route
             path="*"

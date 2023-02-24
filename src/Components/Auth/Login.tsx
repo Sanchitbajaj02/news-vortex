@@ -22,6 +22,7 @@ function Login() {
   const [authData, setAuthData] = useState<UserDataType>({
     emailID: "",
     password: "",
+    userName: "",
   });
   const [btnDisabled, setBtnDisabled] = useState(false);
 

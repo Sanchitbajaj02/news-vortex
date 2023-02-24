@@ -70,7 +70,7 @@ function Home() {
             variant="body1"
             sx={{
               textAlign: "center",
-              color: "primary.contrastText",
+              color: "text.secondary",
             }}
           >
             News Vortex is a news aggregator that allows users to view the

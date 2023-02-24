@@ -9,33 +9,49 @@ import {
   Button,
   Grid,
 } from "@mui/material";
+import { NewsType } from "../../@types/index.d";
 
-const descriptionSlicer = (description) => {
+const descriptionSlicer = (description: string): string => {
   return description.slice(0, 100) + "...";
   // return description;
 };
 
-function Article({ urlToImage, title, description, url, author }) {
+function Article({
+  urlToImage,
+  title,
+  description,
+  url,
+  author,
+  publishedAt,
+  source,
+}: NewsType) {
   return (
     <>
       <Card sx={{ maxWidth: "100%", height: "100%" }}>
         <CardMedia
           sx={{ height: 200, width: "100%" }}
           image={urlToImage ? urlToImage : newsPlaceholder}
-          title={title}
+          component="img"
+          title={title ? title : "No title"}
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography
+            gutterBottom
+            variant="h5"
+            component="div"
+            sx={{
+              color: "primary.contrastText",
+            }}
+          >
             {title}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body2" color="primary.contrastText">
             {description ? descriptionSlicer(description) : "No description"}
           </Typography>
 
           <Typography
             variant="body1"
-            color="text.primary"
-            sx={{ marginTop: 1 }}
+            sx={{ marginTop: 1, color: "primary.contrastText" }}
           >
             By: {author ? author : "Anonymous"}
           </Typography>
@@ -43,7 +59,7 @@ function Article({ urlToImage, title, description, url, author }) {
         <CardActions>
           <Button
             variant="outlined"
-            href={url}
+            href={url ? url : "/"}
             target="_blank"
             rel="noopener noreferrer"
             sx={{

@@ -1,10 +1,8 @@
-import React, { lazy, Suspense } from "react";
 import { Container, Typography, Box, Divider } from "@mui/material";
-
+import Loader from "../Loader/Loader";
 // lazy import of featured jobs
-const FeaturedNews = lazy(() => import("./FeaturedNews"));
-
-const GlobalNews = lazy(() => import("./GlobalNews"));
+import FeaturedNews from "./FeaturedNews";
+import GlobalNews from "./GlobalNews";
 
 function NewsBoard() {
   const newsCategories = ["Business", "Entertainment", "Health", "Technology"];
@@ -15,35 +13,34 @@ function NewsBoard() {
         <Box
           id="Home"
           sx={{
-            marginY: 10,
+            marginBottom: 10,
+            paddingTop: 10,
           }}
         >
           <Typography
             variant="h4"
             component="h1"
-            sx={{ textAlign: "center", fontWeight: 600, marginBottom: 3 }}
+            sx={{ textAlign: "center", fontWeight: 600, marginBottom: 5 }}
           >
             Featured News
           </Typography>
-          <Suspense fallback={<h1>Loading...</h1>}>
-            <FeaturedNews />
-          </Suspense>
+          <FeaturedNews />
         </Box>
-        <Divider sx={{ my: 5, border: "2px solid rgba(0,0,0,0.4)" }} />
+        <Divider
+          sx={{
+            marginTop: 20,
+            border: "2px solid rgba(0,0,0,0.4)",
+          }}
+        />
 
-        {newsCategories.map((category) => {
+        {newsCategories.map((category: string, index: number) => {
           return (
             <>
               <Box
-                key={category}
-                id={category}
-                sx={{
-                  height: 80,
-                }}
-              ></Box>
-              <Box
+                key={index}
                 sx={{
                   marginBottom: 10,
+                  paddingTop: 10,
                 }}
               >
                 <Typography
@@ -52,17 +49,21 @@ function NewsBoard() {
                   sx={{
                     textAlign: "center",
                     fontWeight: 600,
-                    marginBottom: 3,
+                    marginBottom: 5,
                   }}
                 >
                   News on {category}
                 </Typography>
 
-                <Suspense fallback={<h1>Loading...</h1>}>
-                  <GlobalNews category={category} />
-                </Suspense>
+                <GlobalNews category={category} />
+
+                <Divider
+                  sx={{
+                    marginTop: 20,
+                    border: "2px solid rgba(0,0,0,0.4)",
+                  }}
+                />
               </Box>
-              <Divider sx={{ my: 5, border: "2px solid rgba(0,0,0,0.4)" }} />
             </>
           );
         })}
