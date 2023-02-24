@@ -27,9 +27,9 @@ function Article({
 }: NewsType) {
   return (
     <>
-      <Card sx={{ maxWidth: "100%", height: "100%" }}>
+      <Card sx={{ maxWidth: "100%", height: "100%", padding: 2 }}>
         <CardMedia
-          sx={{ height: 200, width: "100%" }}
+          sx={{ height: 250, width: "100%" }}
           image={urlToImage ? urlToImage : newsPlaceholder}
           component="img"
           title={title ? title : "No title"}
@@ -45,7 +45,7 @@ function Article({
           >
             {title}
           </Typography>
-          <Typography variant="body2" color="primary.contrastText">
+          <Typography variant="body2" color="text.secondary">
             {description ? descriptionSlicer(description) : "No description"}
           </Typography>
 
@@ -54,6 +54,19 @@ function Article({
             sx={{ marginTop: 1, color: "primary.contrastText" }}
           >
             By: {author ? author : "Anonymous"}
+          </Typography>
+
+          <Typography
+            variant="body2"
+            sx={{
+              color: "text.secondary",
+            }}
+          >
+            {publishedAt
+              ? `Published at: ${new Date(publishedAt).toLocaleDateString(
+                  "en-GB"
+                )}`
+              : "No date"}
           </Typography>
         </CardContent>
         <CardActions>

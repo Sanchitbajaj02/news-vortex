@@ -24,7 +24,7 @@ export type NewsType = {
   author: string | null;
   content?: string | null | undefined;
   description: string | null;
-  publishedAt: Date | null;
+  publishedAt: string | null;
   source: {
     id: string | null;
     name: string | null;
