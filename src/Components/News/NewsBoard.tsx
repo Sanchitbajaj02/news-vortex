@@ -35,36 +35,34 @@ function NewsBoard() {
 
         {newsCategories.map((category: string, index: number) => {
           return (
-            <>
-              <Box
-                key={index}
+            <Box
+              key={index}
+              sx={{
+                marginBottom: 10,
+                paddingTop: 10,
+              }}
+            >
+              <Typography
+                variant="h4"
+                component="h1"
                 sx={{
-                  marginBottom: 10,
-                  paddingTop: 10,
+                  textAlign: "center",
+                  fontWeight: 600,
+                  marginBottom: 5,
                 }}
               >
-                <Typography
-                  variant="h4"
-                  component="h1"
-                  sx={{
-                    textAlign: "center",
-                    fontWeight: 600,
-                    marginBottom: 5,
-                  }}
-                >
-                  News on {category}
-                </Typography>
+                News on {category}
+              </Typography>
 
-                <GlobalNews category={category} />
+              <GlobalNews category={category} />
 
-                <Divider
-                  sx={{
-                    marginTop: 20,
-                    border: "2px solid rgba(0,0,0,0.4)",
-                  }}
-                />
-              </Box>
-            </>
+              <Divider
+                sx={{
+                  marginTop: 20,
+                  border: "2px solid rgba(0,0,0,0.4)",
+                }}
+              />
+            </Box>
           );
         })}
       </Container>
